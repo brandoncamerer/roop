@@ -256,25 +256,30 @@ if __name__ == "__main__":
     # Select a target button
     target_button = tk.Button(window, text="Select a target", command=select_target, bg="#2d3436", fg="#74b9ff", highlightthickness=4, relief="flat", highlightbackground="#74b9ff", activebackground="#74b9ff", borderwidth=4)
     target_button.place(x=360,y=320,width=180,height=80)
+    
+    # Create a frame with white stroke
+    checkbox_frame = tk.Frame(window, highlightbackground="white", highlightthickness=1)
+    checkbox_frame.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
     # All faces checkbox
     all_faces = tk.IntVar()
-    all_faces_checkbox = tk.Checkbutton(window, anchor="w", relief="groove", activebackground="#2d3436", activeforeground="#74b9ff", selectcolor="black", text="Process all faces in frame", fg="#dfe6e9", borderwidth=0, highlightthickness=0, bg="#2d3436", variable=all_faces, command=toggle_all_faces)
-    all_faces_checkbox.place(x=60,y=500,width=240,height=31)
+    all_faces_checkbox = tk.Checkbutton(checkbox_frame, anchor="w", relief="groove", activebackground="#2d3436", activeforeground="#74b9ff", selectcolor="black", text="Process all faces in frame", fg="#dfe6e9", borderwidth=0, highlightthickness=0, variable=all_faces, command=toggle_all_faces)
+    all_faces_checkbox.grid(row=0, column=0, sticky="w", padx=10, pady=10)
 
     # FPS limit checkbox
     limit_fps = tk.IntVar(None, not args['keep_fps'])
-    fps_checkbox = tk.Checkbutton(window, anchor="w", relief="groove", activebackground="#2d3436", activeforeground="#74b9ff", selectcolor="black", text="Limit FPS to 30", fg="#dfe6e9", borderwidth=0, highlightthickness=0, bg="#2d3436", variable=limit_fps, command=toggle_fps_limit)
-    fps_checkbox.place(x=60,y=475,width=240,height=31)
+    fps_checkbox = tk.Checkbutton(checkbox_frame, anchor="w", relief="groove", activebackground="#2d3436", activeforeground="#74b9ff", selectcolor="black", text="Limit FPS to 30", fg="#dfe6e9", borderwidth=0, highlightthickness=0, variable=limit_fps, command=toggle_fps_limit)
+    fps_checkbox.grid(row=0, column=1, sticky="w", padx=10, pady=10)
 
     # Keep frames checkbox
     keep_frames = tk.IntVar(None, args['keep_frames'])
-    frames_checkbox = tk.Checkbutton(window, anchor="w", relief="groove", activebackground="#2d3436", activeforeground="#74b9ff", selectcolor="black", text="Keep frames dir", fg="#dfe6e9", borderwidth=0, highlightthickness=0, bg="#2d3436", variable=keep_frames, command=toggle_keep_frames)
-    frames_checkbox.place(x=60,y=450,width=240,height=31)
+    frames_checkbox = tk.Checkbutton(checkbox_frame, anchor="w", relief="groove", activebackground="#2d3436", activeforeground="#74b9ff", selectcolor="black", text="Keep frames dir", fg="#dfe6e9", borderwidth=0, highlightthickness=0, variable=keep_frames, command=toggle_keep_frames)
+    frames_checkbox.grid(row=0, column=2, sticky="w", padx=10, pady=10)
 
     # Start button
     start_button = tk.Button(window, text="Start", bg="#f1c40f", relief="flat", borderwidth=0, highlightthickness=0, command=lambda: [save_file(), start()])
-    start_button.place(x=240,y=560,width=120,height=49)
+    start_button.grid(row=0, column=4, sticky="w", padx=10, pady=10)
+
 
     # Status label
     status_label = tk.Label(window, width=580, justify="center", text="Status: waiting for input...", fg="#2ecc71", bg="#2d3436")
